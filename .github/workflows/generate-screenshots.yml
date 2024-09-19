@@ -19,3 +19,12 @@ jobs:
     # Run Puppeteer script to generate screenshots
     - name: Generate screenshots
       run: node generators/generateScreenshot.js
+
+    # Commit screenshots
+    - name: Commit screenshots
+      uses: EndBug/add-and-commit@v9
+      with:
+        add: 'Art/**/icon.png'
+        message: 'Add generated screenshots'
+        author_name: 'GitHub Actions'
+        author_email: 'actions@github.com'
