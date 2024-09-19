@@ -11,13 +11,15 @@ const artDir = "./Art"; // Directory where student projects are stored
     .filter((dir) => fs.lstatSync(path.join(artDir, dir)).isDirectory());
 
   for (const dir of studentDirs) {
-    const projectPath = path.join(__dirname, artDir, dir, "index.html");
+    const projectPath = path.join(artDir, dir, "index.html");
     const screenshotPath = path.join(artDir, dir, "icon.png");
 
     if (fs.existsSync(projectPath)) {
       try {
         const page = await browser.newPage();
-        await page.goto(`file://${projectPath}`);
+        await page.goto(`file://${path.resolve(projectPath)}`, {
+          waitUntil: "networkidle0",
+        });
         await page.screenshot({ path: screenshotPath, fullPage: true });
         console.log(`Screenshot generated for ${dir}`);
       } catch (err) {

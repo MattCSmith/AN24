@@ -19,14 +19,3 @@ jobs:
     # Run Puppeteer script to generate screenshots
     - name: Generate screenshots
       run: node generators/generateScreenshot.js
-
-    # List files in the students directory
-    - name: List files in directory
-      run: ls -la students
-
-    # Upload screenshots as artifacts
-    - name: Upload screenshots
-      uses: actions/upload-artifact@v3
-      with:
-        name: screenshots
-        path: students/
