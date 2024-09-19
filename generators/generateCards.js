@@ -22,9 +22,17 @@ function generateIncludes() {
     // but for now let's assume directory name is enough.
     const authorName = dir; // You can replace this with actual GitHub user details if available
     const projectUrl = `./Art/${dir}/index.html`;
+    const projectImage = `./Art/${dir}/icon.png`;
 
     // Add the project to the cards array
-    cards.push({ projectName, authorName, projectUrl });
+    cards.push({
+      artName: projectName,
+      pageLink: projectUrl,
+      imageLink: projectImage,
+      author: authorName,
+      githubLink: `https://github.com/${authorName}`,
+      projectPath
+    });
   });
 
   
