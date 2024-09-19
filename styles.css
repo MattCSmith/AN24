@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Poppins:400,600|Comfortaa&display=swap');
+
+/* General Layout Style */
+
+:root {
+    --main: #ff7a59;
+    --main-header: #ffca7a;
+    --main-darker: #e86340;
+    --main-deep: #ff9d59;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --accent-color: #ff3e81;
+}
+
+body {
+    text-align: center;
+    background-color: var(--bg-color);
+    background-image: linear-gradient(135deg, #f0f0f0 25%, transparent 25%, transparent 50%, #f0f0f0 50%, #f0f0f0 75%, transparent 75%, transparent), linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 50%, #f0f0f0 50%, #f0f0f0 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+    color: var(--text-color);
+}
+
+/* Remove default margins and padding */
+p,
+h3,
+a,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--main-deep);
+}
+
+/* Headers */
+#header {
+    background: var(--main-header);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--shadow);
+    position: relative;
+}
+
+#header h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--main-darker);
+}
+
+#header h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Search Bar */
+#search-bar {
+    background-color: #fff;
+    width: 60%;
+    border-radius: 50px;
+    padding: 15px 25px;
+    border: 1px solid var(--main-deep);
+    box-shadow: 0 2px 4px var(--shadow);
+    outline: none;
+    margin: 30px auto;
+    transition: box-shadow 0.3s ease;
+}
+
+#search-bar:focus {
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+/* Flex Container */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 2rem;
+    margin: 3rem auto;
+    padding: 0;
+    width: 80vw;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--shadow);
+}
+
+.art-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--main-deep);
+    transition: transform 0.3s ease;
+}
+
+.card:hover .art-image {
+    transform: rotate(5deg);
+}
+
+.art-title {
+    margin: 15px 0 10px 0;
+    font-size: 1.6rem;
+    font-family: 'Comfortaa', cursive;
+    color: var(--main-darker);
+}
+
+.art-title:hover {
+    color: var(--accent-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.author {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--main-deep);
+}
+
+.author a {
+    color: var(--main-deep);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.author a:hover {
+    color: var(--accent-color);
+}
+
+/* Footer */
+#footer {
+    background-color: #343a40;
+    padding: 40px 20px;
+    color: #fff;
+    text-align: center;
+    border-top: 5px solid var(--main-deep);
+    font-family: 'Comfortaa', cursive;
+}
+
+/* Go to top */
+.go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    font-size: 22px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.go-to-top.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.go-to-top span {
+    display: inline-block;
+    animation: bounce 1s infinite;
+}
+
+/* Search filter */
+#search-bar {
+    transition: transform 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--main-darker);
+}
+
+/* Keyframes */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-8px);
+    }
+
+    60% {
+        transform: translateY(-8px);
+    }
+}
