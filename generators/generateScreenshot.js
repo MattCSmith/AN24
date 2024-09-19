@@ -2,10 +2,10 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 const path = require("path");
 
-const artDir = "./Art"; // Directory where student projects are stored
+const artDir = "Art"; // Adjusted to be relative to the root of the repository
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true }); // Set to false to debug
+  const browser = await puppeteer.launch({ headless: true });
   const studentDirs = fs
     .readdirSync(artDir)
     .filter((dir) => fs.lstatSync(path.join(artDir, dir)).isDirectory());
@@ -13,8 +13,8 @@ const artDir = "./Art"; // Directory where student projects are stored
   console.log("Student directories:", studentDirs);
 
   for (const dir of studentDirs) {
-    const projectPath = path.resolve(__dirname, artDir, dir, "index.html");
-    const screenshotPath = path.join(artDir, dir, "icon.png");
+    const projectPath = path.join(process.cwd(), artDir, dir, "index.html");
+    const screenshotPath = path.join(process.cwd(), artDir, dir, "icon.png");
 
     console.log(`Checking for index.html at: ${projectPath}`);
 
