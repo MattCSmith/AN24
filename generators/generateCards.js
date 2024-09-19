@@ -16,11 +16,8 @@ function generateIncludes() {
     const projectPath = path.join(artDir, dir);
 
     // Use directory name as project name
-    const projectName = dir;
-
-    // Here you can automate fetching the author information using GitHub's API,
-    // but for now let's assume directory name is enough.
-    const authorName = dir; // You can replace this with actual GitHub user details if available
+    const projectName = dir.split("-")[1]
+    const authorName = dir.split("-")[0]; 
     const projectUrl = `./Art/${dir}/index.html`;
     const projectImage = `./Art/${dir}/icon.png`;
 
@@ -34,8 +31,6 @@ function generateIncludes() {
       projectPath
     });
   });
-
-  
 
   // Write the content to includes.js file
   fs.writeFileSync("cards.json", JSON.stringify(cards, null, 2));
