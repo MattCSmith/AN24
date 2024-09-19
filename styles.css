@@ -131,16 +131,14 @@ ul {
     display: flex;
     font-size: 1.4rem;
     font-weight: 600;
-    color: var(--main-deep);
     text-transform: uppercase;
     flex-grow: 1;
 }
 
 .art-title h3 {
-    margin: auto
+    margin: auto;
+    color: var(--main-deep);
 }
-
-
 
 .author a { text-transform: uppercase;
     padding: 10px;
