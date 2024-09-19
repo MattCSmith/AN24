@@ -13,6 +13,9 @@ const artDir = "Art"; // Adjusted to be relative to the root of the repository
   console.log("Student directories:", studentDirs);
 
   for (const dir of studentDirs) {
+    console.log(`CWD: ${process.cwd()}`);
+    console.log(`Art directory: ${artDir}`);
+    console.log("Directory:", dir);
     const projectPath = path.join(process.cwd(), artDir, dir, "index.html");
     const screenshotPath = path.join(process.cwd(), artDir, dir, "icon.png");
 
