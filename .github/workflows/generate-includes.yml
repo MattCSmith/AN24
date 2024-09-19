@@ -3,7 +3,7 @@ name: Generate Includes
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   generateIncludes:

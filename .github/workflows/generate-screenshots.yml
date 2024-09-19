@@ -3,7 +3,7 @@ name: Generate Screenshots
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   screenshots:

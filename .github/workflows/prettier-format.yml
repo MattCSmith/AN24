@@ -3,7 +3,7 @@ name: Prettify HTML and CSS
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   format:
