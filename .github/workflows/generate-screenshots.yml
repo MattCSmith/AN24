@@ -8,9 +8,12 @@ on:
 jobs:
   screenshots:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch full history to ensure all commits are accessible
 
     # Install Puppeteer
     - name: Install Puppeteer
