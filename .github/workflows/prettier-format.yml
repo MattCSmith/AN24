@@ -1,0 +1,21 @@
+name: Prettify HTML and CSS
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Install Prettier
+    - name: Install Prettier
+      run: npm install -g prettier
+
+    # Format HTML and CSS
+    - name: Run Prettier on HTML and CSS
+      run: prettier --write "Art/**/*.html" "Art/**/*.css"

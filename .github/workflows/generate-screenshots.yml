@@ -1,0 +1,21 @@
+name: Generate Screenshots
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Install Puppeteer
+    - name: Install Puppeteer
+      run: npm install puppeteer
+
+    # Run Puppeteer script to generate screenshots
+    - name: Generate screenshots
+      run: node generators/generateScreenshot.js

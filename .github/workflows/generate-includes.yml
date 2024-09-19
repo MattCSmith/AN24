@@ -1,0 +1,17 @@
+name: Generate Includes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generateIncludes:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Run the script to generate includes.js
+    - name: Generate includes.js
+      run: node generators/generateIncludes.js
