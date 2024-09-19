@@ -43,7 +43,7 @@ const artDir = "Art"; // Adjusted to be relative to the root of the repository
         page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
         // Take a high-resolution screenshot
-        await page.screenshot({ path: tempPath, fullPage: true });
+        await page.screenshot({ path: tempPath, fullPage: true, type: "png" });
         console.log(`High-resolution screenshot generated for ${dir}`);
 
         // Process and compress the image using sharp
