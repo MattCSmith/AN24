@@ -15,7 +15,7 @@ jobs:
 
     # Run the script to generate cards.json
     - name: Generate cards.json
-      run: node generators/generateCards.json
+      run: node generators/generateCards.js
 
     # Configure Git
     - name: Configure Git
