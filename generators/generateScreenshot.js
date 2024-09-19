@@ -32,36 +32,30 @@ const artDir = "Art"; // Adjusted to be relative to the root of the repository
         // Optional: Wait for specific elements
         await page.waitForSelector("body");
 
-        // Log page content for debugging
-        const pageContent = await page.content();
-        fs.writeFileSync(
-          path.join(process.cwd(), artDir, dir, "page.html"),
-          pageContent
-        );
-
-        // Log console messages
-        page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
-
         // Take a high-resolution screenshot
         await page.screenshot({ path: tempPath, fullPage: true, type: "png" });
         console.log(`High-resolution screenshot generated for ${dir}`);
 
+        // Verify the temporary screenshot file
+        const stats = fs.statSync(tempPath);
+        console.log(`Temporary file size: ${stats.size} bytes`);
+
         // Process and compress the image using sharp
         await sharp(tempPath)
           .resize({ width: 500 }) // Resize to 500px width
-          .toFormat("png", { quality: 80 }) // Adjust quality; 80 is a good balance for PNG
-          .toFile(screenshotPath, (err, info) => {
-            if (err) {
-              console.error(`Failed to process image for ${dir}:`, err);
-            } else {
-              console.log(`Screenshot processed and saved for ${dir}`, info);
-            }
-          });
-
-        // Optionally remove the temporary high-resolution file
-        fs.unlinkSync(tempPath);
+          .toFormat("png", { quality: 80 }) // Adjust quality for PNG
+          .toFile(screenshotPath);
+        console.log(`Screenshot processed and saved to ${screenshotPath}`);
       } catch (err) {
-        console.error(`Failed to generate screenshot for ${dir}:`, err);
+        console.error(
+          `Failed to generate or process screenshot for ${dir}:`,
+          err
+        );
+      } finally {
+        // Optionally remove the temporary high-resolution file
+        if (fs.existsSync(tempPath)) {
+          fs.unlinkSync(tempPath);
+        }
       }
     } else {
       console.log(`index.html not found for ${dir}`);
