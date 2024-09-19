@@ -25,7 +25,10 @@ const artDir = "Art"; // Adjusted to be relative to the root of the repository
       try {
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 800 });
-        await page.goto(`file://${projectPath}`, { waitUntil: "networkidle2" });
+        await page.goto(
+          `https://mattcsmith.github.io/AN24/Art/${dir}/index.html`,
+          { waitUntil: "networkidle2" }
+        );
 
         await page.screenshot({ path: screenshotPath, fullPage: true });
         console.log(`Screenshot generated for ${dir}`);
