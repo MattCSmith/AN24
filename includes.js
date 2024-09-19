@@ -29,6 +29,7 @@ const getCardContents = (cardList) => {
 
 /* Injects cards list html into the DOM */
 let contents = getCardContents(cards);
+console.log("CONTENTS", contents);
 document.getElementById('cards').innerHTML = contents;
 
 /* Adds scroll to top arrow button */
