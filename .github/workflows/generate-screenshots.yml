@@ -23,13 +23,19 @@ jobs:
     - name: Generate screenshots
       run: node generators/generateScreenshot.js
 
-      # Commit screenshots
-    - name: Push Back Formatted Code
+    - name: Commit and Push Screenshots
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
       run: |
-        # configure git
+        # Configure git
         git config --global user.name "Matt Smith"
         git config --global user.email "mattcsmith@users.noreply.github.com"
-
-        git add .
-        git commit -m "(CI) Screenshot Generation"
+        
+        # Add changes
+        git add Art/**/icon.png
+        
+        # Commit changes if there are any
+        git commit -m "(CI) Screenshot Generation" || echo "No changes to commit"
+        
+        # Push changes
         git push
