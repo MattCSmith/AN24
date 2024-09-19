@@ -13,9 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Run the script to generate includes.js
-    - name: Generate includes.js
-      run: node generators/generateIncludes.js
+    # Run the script to generate cards.json
+    - name: Generate cards.json
+      run: node generators/generatecards.json
 
     # Configure Git
     - name: Configure Git
@@ -24,8 +24,8 @@ jobs:
         git config --global user.email "actions@github.com"
 
     # Add, commit, and push changes
-    - name: Commit and push includes.js
+    - name: Commit and push cards.json
       run: |
-        git add includes.js
-        git commit -m "Add generated includes.js"
+        git add cards.json
+        git commit -m "Add generated cards.json"
         git push
