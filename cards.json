@@ -1,7 +1,10 @@
 [
   {
-    "projectName": "SomeArt-Matt",
-    "authorName": "SomeArt-Matt",
-    "projectUrl": "./Art/SomeArt-Matt/index.html"
+    "artName": "SomeArt-Matt",
+    "pageLink": "./Art/SomeArt-Matt/index.html",
+    "imageLink": "./Art/SomeArt-Matt/icon.png",
+    "author": "SomeArt-Matt",
+    "githubLink": "https://github.com/SomeArt-Matt",
+    "projectPath": "Art/SomeArt-Matt"
   }
 ]
