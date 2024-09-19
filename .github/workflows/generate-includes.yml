@@ -23,9 +23,13 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
 
+    # Check for changes
+    - name: Check for changes
+      run: git pull
+
     # Add, commit, and push changes
     - name: Commit and push cards.json
       run: |
         git add cards.json
-        git commit -m "Add generated cards.json"
+        git commit -m "(CI) cards.json Generation" || echo "No changes to commit"
         git push
