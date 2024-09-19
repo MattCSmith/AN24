@@ -35,33 +35,38 @@ function generateIncludes() {
   // Append additional code
   const additionalCode = `
 /* Shuffles cards' order */
-function shuffle(o) {
-  for (
-    let j, x, i = o.length;
-    i;
-    j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
-  );
-  return o;
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 /** Creates cards from the array above
  *  You don't need to modify this
  *  */
 const getCardContents = (cardList) => {
-  return shuffle(cardList).map((c) => [
-    \`<li class="card">\` +
-      \`<a href='${c.pageLink}'>\` +
-      \`<img class="art-image" src='${c.imageLink}' alt='${c.artName}' />\` +
-      \`</a>\` +
-      \`<div class="flex-content">\` +
-      \`<a href='${c.pageLink}'><h3 class="art-title">${c.artName}</h3></a>\` +
-      \`<p class='author'><a href="${c.githubLink}" target="_blank"><i class="fab fa-github"></i> ${c.author}</a> </p>\` +
-      \`</div>\` +
-      \`</li>\`
-  ]);
+  return shuffle(cardList).map((c) => {
+    return \`
+      <li class="card">
+        <a href='\${c.url}'>
+          <img class="art-image" src='\${c.url}' alt='\${c.projectName}' />
+        </a>
+        <div class="flex-content">
+          <a href='\${c.url}'><h3 class="art-title">\${c.projectName}</h3></a>
+          <p class='author'>
+            <a href="\${c.githubLink}" target="_blank">
+              <i class="fab fa-github"></i> \${c.authorName}
+            </a>
+          </p>
+        </div>
+      </li>
+    \`;
+  }).join('');
 };
 
-/* Injects cards list html into the DOM */
+/* Injects cards list HTML into the DOM */
 let contents = getCardContents(cards);
 document.getElementById('cards').innerHTML = contents;
 
@@ -88,18 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
 /* Search filter - by author or by name - update displayed cards */
 function searchCard(event) {
   let timeoutId = null;
-  !!timeoutId && clearTimeout(timeoutId);
+  if (timeoutId) clearTimeout(timeoutId);
 
   const value = event.target.value.toLowerCase();
   let filteredCards;
-  if (!!value) {
-    filteredCards = cards.filter(({ artName, githubLink, author }) => {
-      const _artName = artName.toLowerCase();
+  if (value) {
+    filteredCards = cards.filter(({ projectName, githubLink, authorName }) => {
+      const _projectName = projectName.toLowerCase();
       const _githubLink = githubLink.toLowerCase();
-      const _author = author.toLowerCase();
-      return [_artName, _githubLink, _author].some((detail) =>
-        detail.includes(value)
-      );
+      const _authorName = authorName.toLowerCase();
+      return [_projectName, _githubLink, _authorName].some(detail => detail.includes(value));
     });
     contents = getCardContents(filteredCards);
   } else {
@@ -109,7 +112,8 @@ function searchCard(event) {
     document.getElementById('cards').innerHTML = contents;
   }, 200);
 }
-document.getElementById('search-bar').addEventListener('keyup', searchCard);`;
+document.getElementById('search-bar').addEventListener('keyup', searchCard);
+`;
 
   // Append the additional code to the end of includes.js
   fs.appendFileSync(outputFile, additionalCode);
