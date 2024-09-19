@@ -5,7 +5,7 @@ const path = require("path");
 const artDir = "Art"; // Adjusted to be relative to the root of the repository
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false }); // Set to false for debugging
+  const browser = await puppeteer.launch({ headless: true }); 
   const studentDirs = fs
     .readdirSync(artDir)
     .filter((dir) => fs.lstatSync(path.join(artDir, dir)).isDirectory());
