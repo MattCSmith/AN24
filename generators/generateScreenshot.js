@@ -5,7 +5,7 @@ const path = require("path");
 const artDir = "Art"; // Adjusted to be relative to the root of the repository
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false }); // Set to false for debugging
   const studentDirs = fs
     .readdirSync(artDir)
     .filter((dir) => fs.lstatSync(path.join(artDir, dir)).isDirectory());
@@ -25,10 +25,20 @@ const artDir = "Art"; // Adjusted to be relative to the root of the repository
       try {
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 800 });
-        await page.goto(
-          `https://mattcsmith.github.io/AN24/Art/${dir}/index.html`,
-          { waitUntil: "networkidle2" }
+        await page.goto(`file://${projectPath}`, { waitUntil: "networkidle2" });
+
+        // Optional: Wait for specific elements
+        await page.waitForSelector("body");
+
+        // Log page content for debugging
+        const pageContent = await page.content();
+        fs.writeFileSync(
+          path.join(process.cwd(), artDir, dir, "page.html"),
+          pageContent
         );
+
+        // Log console messages
+        page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
         await page.screenshot({ path: screenshotPath, fullPage: true });
         console.log(`Screenshot generated for ${dir}`);
