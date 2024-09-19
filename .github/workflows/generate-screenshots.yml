@@ -19,6 +19,10 @@ jobs:
     - name: Install Puppeteer
       run: npm install puppeteer
 
+    # Install Sharp
+    - name: Install Sharp
+      run: npm install sharp
+
     # Run Puppeteer script to generate screenshots
     - name: Generate screenshots
       run: node generators/generateScreenshot.js
