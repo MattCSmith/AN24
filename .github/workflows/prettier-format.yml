@@ -19,3 +19,21 @@ jobs:
     # Format HTML and CSS
     - name: Run Prettier on HTML and CSS
       run: prettier --write "Art/**/*.html" "Art/**/*.css"
+
+    # Configure Git
+    - name: Configure Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+
+    # Check for changes
+    - name: Check for changes
+      run: git pull
+
+    # Add, commit, and push changes
+    - name: Commit Changes
+      run: |
+        git add .
+        git commit -m "(CI) Prettified" || echo "No changes to commit"
+        git push
+
