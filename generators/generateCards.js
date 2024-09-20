@@ -32,7 +32,7 @@ function generateIncludes() {
   });
 
   // Write the content to includes.js file
-  fs.writeFileSync("/public/cards.json", JSON.stringify(cards, null, 2));
+  fs.writeFileSync("public/cards.json", JSON.stringify(cards, null, 2));
 }
 
 generateIncludes();
