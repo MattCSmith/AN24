@@ -30,6 +30,6 @@ jobs:
     # Add, commit, and push changes
     - name: Commit and push cards.json
       run: |
-        git add cards.json
+        git add public/cards.json
         git commit -m "(CI) cards.json Generation" || echo "No changes to commit"
         git push
