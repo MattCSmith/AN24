@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const artDir = "./Art";
-const outputFile = "./includes.js"; // Path to your includes.js file
 
 // Function to generate the includes.js content
 function generateIncludes() {
@@ -18,8 +17,8 @@ function generateIncludes() {
     // Use directory name as project name
     const projectName = dir.split("-")[1]
     const authorName = dir.split("-")[0]; 
-    const projectUrl = `./Art/${dir}/index.html`;
-    const projectImage = `./Art/${dir}/icon.png`;
+    const projectUrl = `/Art/${dir}/index.html`;
+    const projectImage = `/Art/${dir}/icon.png`;
 
     // Add the project to the cards array
     cards.push({
@@ -33,7 +32,7 @@ function generateIncludes() {
   });
 
   // Write the content to includes.js file
-  fs.writeFileSync("cards.json", JSON.stringify(cards, null, 2));
+  fs.writeFileSync("/public/cards.json", JSON.stringify(cards, null, 2));
 }
 
 generateIncludes();
