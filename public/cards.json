@@ -1,5 +1,13 @@
 [
   {
+    "artName": "gpt",
+    "pageLink": "/Art/mattcsmith-gpt/index.html",
+    "imageLink": "/Art/mattcsmith-gpt/icon.png",
+    "author": "mattcsmith",
+    "githubLink": "https://github.com/mattcsmith",
+    "projectPath": "Art/mattcsmith-gpt"
+  },
+  {
     "artName": "triangle",
     "pageLink": "/Art/mattcsmith-triangle/index.html",
     "imageLink": "/Art/mattcsmith-triangle/icon.png",
